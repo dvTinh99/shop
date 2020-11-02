@@ -48,3 +48,11 @@ Route::get('thanh-toan',[
     'as'=>'thanhtoan',
     'uses'=>'App\Http\Controllers\PageController@getThanhToan'
 ]);
+Route::post('dat-hang',[
+    'as'=>'dathang',
+    'uses'=>'App\Http\Controllers\PageController@postCheckout'
+]);
+// Route::get('dat-hang2',[
+//     'as'=>'dathang2',
+//     'uses'=>'App\Http\Controllers\PageController@postCheckout'
+// ]);
