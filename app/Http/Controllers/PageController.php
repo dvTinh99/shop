@@ -9,6 +9,9 @@ use Session ;
 use App\Models\Customer;
 use App\Models\Bill;
 use App\Models\BillDetail;
+use App\Models\User;
+use Hash;
+use Auth;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -111,5 +114,37 @@ class PageController extends Controller
         }
         Session::forget('cart');
         return redirect()->back()->with('thongbao','Đặt hàng thành công');
+    }
+
+    public function getLogin(){
+        return view('page.dangnhap');
+    }
+    public function getSignin(){
+        return view('page.dangki');
+    }
+    public function postSignin(Request $req){
+        $user = new User;
+        $user->full_name = $req->fullname;
+        $user->email= $req->email;
+        $user->password = Hash::make($req->password);
+        $user->phone = $req->phone;
+        $user->address = $req->address;
+        $user->save();
+        return redirect()->back()->with('thanhcong','Đã tạo tài khoảng thành công');
+
+    }
+    public function postLogin(Request $req){
+        $credentials = array('email'=>$req->email,'password'=>$req->pass);
+        if(Auth::attempt($credentials)){
+            return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
+        }
+        else{
+            return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
+        }
+    }
+
+    public function postLogout(){
+        Auth::logout();
+        return redirect()->route('trang-chu');
     }
 }
