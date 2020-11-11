@@ -16,5 +16,6 @@ class Product extends Model
     public function bill_detail(){
         return $this->hasMany('App\Models\BillDetail','id_product','id');
     }
+   
 
 }

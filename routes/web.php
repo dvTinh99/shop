@@ -12,10 +12,40 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/**
+ * route admin
+ * 
+ */
+Route::get('admin',[
+    'as'=>'adminIndex',
+    'uses'=> 'App\Http\Controllers\AdminController@AdminIndex'
+]);
+Route::get('adminInsert',[
+    'as'=>'insert',
+    'uses'=>'App\Http\Controllers\AdminController@AdminInsert'
+]);
+Route::post('AdminSave',[
+    'as'=>'save',
+    'uses'=>'App\Http\Controllers\AdminController@AdminSave'
+]);
+Route::post('AdminSave2',[
+    'as'=>'save2',
+    'uses'=>'App\Http\Controllers\AdminController@AdminSaveAfterEdit'
+]);
+Route::get('AdminEdit/{id}',[
+    'as'=>'edit',
+    'uses'=>'App\Http\Controllers\AdminController@AdminEdit'
+]);
+Route::get('AdminDelete/{id}',[
+    'as'=>'delete',
+    'uses'=>'App\Http\Controllers\AdminController@AdminDelete'
+]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+ //////////////
+Route::get('/',[
+    'as'=>'trang-chu',
+    'uses'=>'App\Http\Controllers\PageController@getIndex'
+]);
 Route::get('index',[
     'as'=>'trang-chu',
     'uses'=>'App\Http\Controllers\PageController@getIndex'
@@ -82,3 +112,4 @@ Route::get('search',[
     'as'=>'search',
     'uses'=>'App\Http\Controllers\PageController@getSearch'
 ]);
+

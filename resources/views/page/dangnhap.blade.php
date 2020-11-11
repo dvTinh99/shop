@@ -32,7 +32,7 @@
 						
 						<div class="form-block">
 							<label for="email">Email address*</label>
-							<input type="email" id="email" name="email" required>
+							<input type="text" id="email" name="email" required>
 						</div>
 						<div class="form-block">
 							<label for="phone">Password*</label>

@@ -23,8 +23,8 @@ class PageController extends Controller
         // exit();
         $new_product = Product::where('new',1)->paginate(4);
         // dd($new_product);
-        $sanpham_khuyenmai = Product::where('promotion_price','<>',0)->paginate(8);
-        
+        $sanpham_khuyenmai = Product::where('promotion_price','<>',0)->paginate(4);
+        // dd($sanpham_khuyenmai);
         return view('page.trangchu',compact('slide','new_product','sanpham_khuyenmai'));
     }
 
