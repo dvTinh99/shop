@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductType;
+use App\Models\Bill;
 class AdminController extends Controller
 {
     function AdminIndex(){
@@ -48,5 +49,22 @@ class AdminController extends Controller
     function AdminDelete($id){
         Product::find($id)->delete();
         return redirect()->route('adminIndex');
+    }
+    function AdminThongKe(){
+        $bill = Bill::all();
+        return view('admin.thong_ke',compact('bill'));
+    }
+    function AdminTrangthai(Request $req){
+        $bill = Bill::find($req->id);
+        $stt = $bill->trang_thai ;
+        if($stt == 0){
+            $bill->trang_thai = 1;
+        }
+        else{
+            $bill->trang_thai = 0;
+        }
+        $bill->save();
+
+        return redirect()->back();
     }
 }

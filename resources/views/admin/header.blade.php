@@ -6,7 +6,7 @@
 				<nav class="main-menu">
 					<ul class="l-inline ov">
 						<li><a href="{{route('adminIndex')}}">Sản phẩm</a></li>
-						<li><a href="{{route('gioithieu')}}">Thống Kê</a></li>
+						<li><a href="{{route('thongke')}}">Thống Kê</a></li>
 						<li><a href="{{route('insert')}}">Thêm sản phẩm</a></li>
 					</ul>
 					<div class="clearfix"></div>

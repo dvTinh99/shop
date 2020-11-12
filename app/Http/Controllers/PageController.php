@@ -10,9 +10,11 @@ use App\Models\Customer;
 use App\Models\Bill;
 use App\Models\BillDetail;
 use App\Models\User;
+use App\Models\Admin;
 use Hash;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -133,16 +135,33 @@ class PageController extends Controller
         return redirect()->back()->with('thanhcong','Đã tạo tài khoảng thành công');
 
     }
+    // public function AdminCheck($email , $pass){
+    //     $user = User::where('email', $email)
+    //         ->where('password',$pass)->get();
+    //     dd($user);
+    //     if($user[0]->chuc_vu == "1") return true;
+    //     return false;
+    // }
     public function postLogin(Request $req){
+        $email = $req->email;
+        $pass = $req->pass;
+
         $credentials = array('email'=>$req->email,'password'=>$req->pass);
         if(Auth::attempt($credentials)){
+            
             return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
         }
         else{
-            return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
+                $admin = Admin::where('admin_name', $email)
+                ->where('password',$pass)->get();
+
+            if(!empty($admin[0])) return redirect()->route('adminIndex');
+            else return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
+                
+            
         }
     }
-
+    
     public function postLogout(){
         Auth::logout();
         return redirect()->route('trang-chu');

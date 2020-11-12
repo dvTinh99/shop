@@ -40,6 +40,14 @@ Route::get('AdminDelete/{id}',[
     'as'=>'delete',
     'uses'=>'App\Http\Controllers\AdminController@AdminDelete'
 ]);
+Route::get('thong-ke',[
+    'as'=>'thongke',
+    'uses'=>'App\Http\Controllers\AdminController@AdminThongKe'
+]);
+Route::post('trang-thai',[
+    'as'=>'trangthai',
+    'uses'=>'App\Http\Controllers\AdminController@AdminTrangthai'
+]);
 
  //////////////
 Route::get('/',[
