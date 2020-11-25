@@ -25,30 +25,19 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">name</th>
-      <th scope="col">date</th>
-      <th scope="col">total</th>
-      <th scope="col">create</th>
+      <th scope="col">so luong da ban ra</th>
+
     </tr>
   </thead>
   <tbody>
-  <?php $sum = 0?>
     <?php $stt =0;foreach($bill as $pro): $stt++ ?>
-    <?php $sum+= $pro->total ?>
     <tr>
       <th scope="row">{{$stt}}</th>
-      <td><?php echo \App\Models\Customer::find($pro->id_customer)->name ?></td>
-      <td>{{$pro->date_order}}</td>
-      <td>{{number_format($pro->total)}}</td>
-      </form>
-      <td>{{$pro->created_at}}</td>
+      <td><?php echo \App\Models\Product::find($pro->id_product)->name ?></td>
+      <td>{{$pro->count}}</td>
     </tr>
 
-    <?php endforeach   ?>
-    <tr>
-    <td colspan="3"> Tổng </td>
-    <td> <?php echo number_format($sum)?> </td>
-    <td></td>
-    </tr>
+    <?php endforeach  ?>
   </tbody>
 </table>
 </div>

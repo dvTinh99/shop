@@ -96,8 +96,8 @@
 										</p>
 									</div>
 									<div class="single-item-caption">
-										<a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-										<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+										<a class="add-to-cart pull-left" href="{{route('chitietsanpham',$sptt->id)}}"><i class="fa fa-shopping-cart"></i></a>
+										<a class="beta-btn primary" href="{{route('chitietsanpham',$sptt->id)}}">Details <i class="fa fa-chevron-right"></i></a>
 										<div class="clearfix"></div>
 									</div>
 								</div>
@@ -116,7 +116,7 @@
 							<div class="beta-sales beta-lists">
 							@foreach($sp_tuongtu as $sptt)
 							<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/image/product/{{$sptt->image}}" alt=""></a>
+									<a class="pull-left" href="{{route('chitietsanpham',$sptt->id)}}"><img src="source/image/product/{{$sptt->image}}" alt=""></a>
 									<div class="media-body">
 									{{$sptt->name}}
 									</div>
@@ -131,7 +131,7 @@
 							<div class="beta-sales beta-lists">
 							@foreach($sp_tuongtu as $sptt)
 							<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/image/product/{{$sptt->image}}" alt=""></a>
+									<a class="pull-left" href="{{route('chitietsanpham',$sptt->id)}}"><img src="source/image/product/{{$sptt->image}}" alt=""></a>
 									<div class="media-body">
 									{{$sptt->name}}
 									</div>

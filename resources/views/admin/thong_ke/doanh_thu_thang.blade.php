@@ -31,8 +31,8 @@
     </tr>
   </thead>
   <tbody>
-  <?php $sum = 0?>
-    <?php $stt =0;foreach($bill as $pro): $stt++ ?>
+    <?php foreach($bill as $bi => $pr): ?>
+    <?php $sum = $stt =0;foreach($pr as $pro):$stt++ ?>
     <?php $sum+= $pro->total ?>
     <tr>
       <th scope="row">{{$stt}}</th>
@@ -42,13 +42,17 @@
       </form>
       <td>{{$pro->created_at}}</td>
     </tr>
-
     <?php endforeach   ?>
     <tr>
     <td colspan="3"> Tổng </td>
     <td> <?php echo number_format($sum)?> </td>
     <td></td>
     </tr>
+    <tr>
+    <td colspan="5"> ######################## </td>
+    </tr>
+    <?php endforeach   ?>
+    
   </tbody>
 </table>
 </div>

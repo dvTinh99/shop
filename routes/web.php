@@ -120,4 +120,26 @@ Route::get('search',[
     'as'=>'search',
     'uses'=>'App\Http\Controllers\PageController@getSearch'
 ]);
+///////////////////////////////
+Route::get('doanh-thu',[
+    'as'=>'doanhthu',
+    'uses'=>'App\Http\Controllers\AdminController@AdminDoanhThu'
+]);
+
+Route::get('sp-ban-chay',[
+    'as'=>'spbanchay',
+    'uses'=>'App\Http\Controllers\AdminController@AdminBanChay'
+]);
+Route::get('sp-ban-cham',[
+    'as'=>'spbancham',
+    'uses'=>'App\Http\Controllers\AdminController@AdminBanCham'
+]);
+Route::get('doanh-thu-theo-tuan',[
+    'as'=>'tuan',
+    'uses'=>'App\Http\Controllers\AdminController@AdminTuan'
+]);
+Route::get('doanh-thu-theo-thang',[
+    'as'=>'thang',
+    'uses'=>'App\Http\Controllers\AdminController@AdminThang'
+]);
 

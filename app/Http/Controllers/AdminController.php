@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductType;
 use App\Models\Bill;
+use App\Models\BillDetail;
+use Carbon\Carbon;
+use DB ;
 class AdminController extends Controller
 {
     function AdminIndex(){
@@ -52,7 +55,7 @@ class AdminController extends Controller
     }
     function AdminThongKe(){
         $bill = Bill::all();
-        return view('admin.thong_ke',compact('bill'));
+        return view('admin.trang_thai',compact('bill'));
     }
     function AdminTrangthai(Request $req){
         $bill = Bill::find($req->id);
@@ -66,5 +69,36 @@ class AdminController extends Controller
         $bill->save();
 
         return redirect()->back();
+    }
+    function AdminDoanhThu(){
+        $bill = Bill::where('trang_thai',1)->get();
+        // dd($bill);
+        return view('admin.thong_ke',compact('bill'));
+    }
+
+    function AdminBanChay(){
+        $bill = BillDetail::select(DB::raw('id_product,count(id_product) as count'))
+        ->groupBy('id_product')
+        ->orderBy('count','DESC')
+        ->get();
+        // dd($bill);
+        return view('admin.thong_ke.sp_banchay',compact('bill'));
+    }
+
+    function AdminBanCham(){
+        return view('admin.thong_ke.sp_bancham');
+    }
+    function AdminTuan(){
+        return view('admin.thong_ke.doanh_thu_tuan');
+    }
+    function AdminThang(){
+        $bill= Bill::where('trang_thai',1)
+        ->orderBy('created_at')
+      ->get()
+      ->groupBy(function($val) {
+      return Carbon::parse($val->created_at)->format('M');
+    });
+    // dd($bill);
+        return view('admin.thong_ke.doanh_thu_thang',compact('bill'));
     }
 }
