@@ -89,7 +89,14 @@ class AdminController extends Controller
         return view('admin.thong_ke.sp_bancham');
     }
     function AdminTuan(){
-        return view('admin.thong_ke.doanh_thu_tuan');
+        $bill = Bill::where('trang_thai',1)
+        ->orderBy('created_at')
+      ->get()
+      ->groupBy(function($date) {
+            return Carbon::parse($date->created_at)->format('W');
+        });
+        // dd($bill);
+        return view('admin.thong_ke.doanh_thu_tuan',compact('bill'));
     }
     function AdminThang(){
         $bill= Bill::where('trang_thai',1)
